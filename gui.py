@@ -14,4 +14,9 @@ openFile = tk.Button(root, text='Open File', padx=10,
                      pady=5, fg='white', bg='green')
 openFile.pack()
 
+openApp = openFile = tk.Button(root, text='Open App', padx=10,
+                               pady=5, fg='white', bg='green')
+openApp.pack()
+
+
 root.mainloop()
