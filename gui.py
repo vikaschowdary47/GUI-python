@@ -7,10 +7,13 @@ apps = []
 
 
 def addApp():
+    for widget in frame.winfo_children():
+        widget.destroy()
+
     filename = filedialog.askopenfilename(
         initialdir='/', title='Select File', filetypes=(('executables', '*.exe'), ('all files', '*.*')))
     apps.append(filename)
-    print(apps)
+    # print(apps)
     for app in apps:
         label = tk.Label(frame, text=app, bg='lightgrey')
         label.pack()
