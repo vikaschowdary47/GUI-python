@@ -3,10 +3,17 @@ from tkinter import filedialog, Text
 import os
 
 root = tk.Tk()
+apps = []
 
 
-def addApp:
-    filename = filedialog.askopenfilename(initialdir='/', title='Select File', filetypes(('executables', '*.exe'), ('all files', *.*)))
+def addApp():
+    filename = filedialog.askopenfilename(
+        initialdir='/', title='Select File', filetypes=(('executables', '*.exe'), ('all files', '*.*')))
+    apps.append(filename)
+    print(apps)
+    for app in apps:
+        label = tk.Label(frame, text=app, bg='lightgrey')
+        label.pack()
 
 
 canvas = tk.Canvas(root, height=700, width=700, bg='blue')
