@@ -5,10 +5,21 @@ import os
 root = tk.Tk()
 apps = []
 
+if os.path.isfile('save.txt'):
+    with open('save.txt', 'r') as f:
+        tempApps = f.read()
+        tempApps = tempApps.split(',')
+        apps = [x for x in tempApps if x.strip()]
+
 
 def addApp():
     for widget in frame.winfo_children():
         widget.destroy()
+
+
+def startApps():
+    for app in apps:
+        os.startfile(app)
 
     filename = filedialog.askopenfilename(
         initialdir='/', title='Select File', filetypes=(('executables', '*.exe'), ('all files', '*.*')))
@@ -30,8 +41,14 @@ openFile = tk.Button(root, text='Open File', padx=10,
 openFile.pack()
 
 openApp = openFile = tk.Button(root, text='Open App', padx=10,
-                               pady=5, fg='white', bg='green')
+                               pady=5, fg='white', bg='green', command=startApps)
 openApp.pack()
 
+for app in apps:
+    label = tk.Label(frame, text=app)
 
 root.mainloop()
+
+with open('save.txt', 'w') as f:
+    for app in apps:
+        f.write(app + ',')
